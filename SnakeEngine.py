@@ -1,3 +1,5 @@
+from random import randint
+
 UP = 0
 RIGHT = 1
 DOWN = 2
@@ -9,7 +11,7 @@ GAME_WON = 2
 
 
 class SnakeEngine:
-    def __init__(self, width, height, food=[], snake=None, direction=UP):
+    def __init__(self, width, height, food=[(10, 10), (10, 11)], snake=None, direction=UP):
         # TODO: validate width, height
         self.width = width
         self.height = height
@@ -33,19 +35,35 @@ class SnakeEngine:
         elif self.direction == LEFT:
             x -= 1
 
-        self.snake = [(x, y)] + self.snake[:-1]
+        if self.try_eat_food():
+            self.snake = [(x, y)] + self.snake
+        else:
+            self.snake = [(x, y)] + self.snake[:-1]
+
+    def try_eat_food(self):
+        head = self.snake[0]
+        if head in self.food:
+            self.food.remove(head)
+            return True
+        return False
+
+    def add_food_if_needed(self):
+        if len(self.food) > 0:
+            return
+
+        while True:
+            food_position = (randint(0, self.width - 1),
+                             randint(0, self.height - 1))
+            if not(food_position in self.food or food_position in self.snake):
+                self.food = self.food + [food_position]
+                return
 
     def is_snake_alive(self):
         (head_x, head_y) = self.snake[0]
-        print(head_x)
         if head_x < 0 or head_x == self.width or head_y < 0 or head_y == self.height:
             return False
 
-        for segment in self.snake[1:]:
-            if segment == self.snake[0]:
-                return False
-
-        return True
+        return not self.snake[0] in self.snake[1:]
 
     def tick(self):
         if self.status == GAME_OVER:
@@ -55,3 +73,5 @@ class SnakeEngine:
         if not self.is_snake_alive():
             self.status = GAME_OVER
             return
+
+        self.add_food_if_needed()

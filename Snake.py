@@ -2,9 +2,9 @@ import pygame
 import time
 from SnakeEngine import SnakeEngine, UP, DOWN, LEFT, RIGHT, PLAYING, GAME_OVER
 
-WIDTH = 75
-HEIGHT = 50
-FIELD_SIZE = 10
+WIDTH = 50
+HEIGHT = 40
+FIELD_SIZE = 12
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -72,7 +72,6 @@ def main():
 
         current_time = time.time() * 1000
         if engine.status == PLAYING and current_time - last_time > 100:
-            print(current_time)
             last_time = current_time
             engine.tick()
             draw_arena(display, engine)
