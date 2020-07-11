@@ -11,12 +11,14 @@ GAME_WON = 2
 
 
 class SnakeEngine:
-    def __init__(self, width, height, food=[(10, 10), (10, 11)], snake=None, direction=UP):
+    def __init__(self, width, height, food=None, snake=None, direction=UP):
         # TODO: validate width, height
         self.width = width
         self.height = height
         self.food = food
         self.snake = snake or [(width // 2, height // 2)]
+        self.food = food or []
+        self.add_food_if_needed()
         self.direction = direction
         self.status = PLAYING
 
