@@ -1,6 +1,6 @@
 import pygame
 import time
-from SnakeEngine import SnakeEngine, UP, DOWN, LEFT, RIGHT
+from SnakeEngine import SnakeEngine, UP, DOWN, LEFT, RIGHT, PLAYING, GAME_OVER
 
 WIDTH = 75
 HEIGHT = 50
@@ -71,7 +71,7 @@ def main():
                     engine.change_direction(RIGHT)
 
         current_time = time.time() * 1000
-        if current_time - last_time > 100:
+        if engine.status == PLAYING and current_time - last_time > 100:
             print(current_time)
             last_time = current_time
             engine.tick()
