@@ -1,5 +1,6 @@
 import pygame
-from SnakeEngine import SnakeEngine
+import time
+from SnakeEngine import SnakeEngine, UP, DOWN, LEFT, RIGHT
 
 WIDTH = 75
 HEIGHT = 50
@@ -40,6 +41,7 @@ def draw_food(display, engine):
 
 
 def draw_arena(display, engine):
+    display.fill(WHITE)
     draw_walls(display)
     draw_food(display, engine)
     draw_snake(display, engine)
@@ -53,12 +55,28 @@ def main():
     pygame.display.set_caption('PySnake')
     display.fill(WHITE)
 
+    last_time = 0
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        draw_arena(display, engine)
-        pygame.display.update()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    engine.change_direction(UP)
+                if event.key == pygame.K_DOWN:
+                    engine.change_direction(DOWN)
+                if event.key == pygame.K_LEFT:
+                    engine.change_direction(LEFT)
+                if event.key == pygame.K_RIGHT:
+                    engine.change_direction(RIGHT)
+
+        current_time = time.time() * 1000
+        if current_time - last_time > 100:
+            print(current_time)
+            last_time = current_time
+            engine.tick()
+            draw_arena(display, engine)
+            pygame.display.update()
 
 
 if __name__ == '__main__':
