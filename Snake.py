@@ -45,6 +45,7 @@ def draw_arena(display, game):
     draw_walls(display)
     draw_food(display, game)
     draw_snake(display, game)
+    pygame.display.update()
 
 
 def main():
@@ -53,7 +54,7 @@ def main():
     display = pygame.display.set_mode(
         ((2 + WIDTH) * FIELD_SIZE, (2 + HEIGHT) * FIELD_SIZE))
     pygame.display.set_caption('PySnake')
-    display.fill(WHITE)
+    draw_arena(display, game)
 
     last_time = 0
     while True:

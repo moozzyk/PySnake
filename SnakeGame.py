@@ -38,19 +38,21 @@ class SnakeGame:
         elif self.direction == LEFT:
             x -= 1
 
-        if self.try_eat_food():
+        if self.try_eat_food((x, y)):
             self.snake = [(x, y)] + self.snake
         else:
             self.snake = [(x, y)] + self.snake[:-1]
 
-    def try_eat_food(self):
-        head = self.snake[0]
-        if head in self.food:
-            self.food.remove(head)
+    def try_eat_food(self, position):
+        if position in self.food:
+            self.food.remove(position)
             return True
         return False
 
     def add_food_if_needed(self):
+        if len(self.snake) == self.width * self.height:
+            return
+
         if len(self.food) > 0:
             return
 
@@ -69,12 +71,16 @@ class SnakeGame:
         return not self.snake[0] in self.snake[1:]
 
     def tick(self):
-        if self.status == GAME_OVER:
+        if self.status != PLAYING:
             return
 
         self.move_snake()
         if not self.is_snake_alive():
             self.status = GAME_OVER
+            return
+
+        if len(self.snake) == self.width * self.height:
+            self.status = GAME_WON
             return
 
         self.add_food_if_needed()
