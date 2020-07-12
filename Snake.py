@@ -40,16 +40,23 @@ def draw_food(display, game):
             1 + x) * FIELD_SIZE, (1 + y) * FIELD_SIZE, FIELD_SIZE, FIELD_SIZE))
 
 
+def draw_score(display, game):
+    font = pygame.font.Font(pygame.font.get_default_font(), 12)
+    text_surface = font.render(f'Score: {game.score}', True, WHITE)
+    display.blit(text_surface, (FIELD_SIZE, 0))
+
+
 def draw_arena(display, game):
     display.fill(WHITE)
     draw_walls(display)
     draw_food(display, game)
     draw_snake(display, game)
+    draw_score(display, game)
 
 
 def draw_text(display, text):
     font = pygame.font.Font(pygame.font.get_default_font(), 36)
-    text_surface = font.render(text, False, RED)
+    text_surface = font.render(text, True, RED)
     x = ((2 + WIDTH) * FIELD_SIZE - text_surface.get_width()) // 2
     y = ((2 + HEIGHT) * FIELD_SIZE - text_surface.get_height()) // 2
     display.blit(text_surface, (x, y))

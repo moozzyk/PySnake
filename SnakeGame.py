@@ -21,6 +21,7 @@ class SnakeGame:
         self.add_food_if_needed()
         self.direction = direction
         self.status = PLAYING
+        self.score = 0
 
     def change_direction(self, new_direction):
         # TODO: validate direction
@@ -46,6 +47,7 @@ class SnakeGame:
     def try_eat_food(self, position):
         if position in self.food:
             self.food.remove(position)
+            self.score += 5
             return True
         return False
 
