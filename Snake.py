@@ -48,7 +48,7 @@ def draw_arena(display, game):
 
 
 def draw_text(display, text):
-    font = pygame.font.Font(pygame.font.get_default_font(), 46)
+    font = pygame.font.Font(pygame.font.get_default_font(), 36)
     text_surface = font.render(text, False, RED)
     x = ((2 + WIDTH) * FIELD_SIZE - text_surface.get_width()) // 2
     y = ((2 + HEIGHT) * FIELD_SIZE - text_surface.get_height()) // 2
@@ -78,6 +78,10 @@ def main():
                     game.change_direction(LEFT)
                 if event.key == pygame.K_RIGHT:
                     game.change_direction(RIGHT)
+                if event.key == pygame.K_y and game.status != PLAYING:
+                    game = SnakeGame(width=WIDTH, height=HEIGHT)
+                if event.key == pygame.K_n and game.status != PLAYING:
+                    return
 
         current_time = time.time() * 1000
         if current_time - last_time < 100:
@@ -88,9 +92,9 @@ def main():
             game.tick()
             draw_arena(display, game)
         elif game.status == GAME_OVER:
-            draw_text(display, 'Game Over')
+            draw_text(display, 'Game Over. Try again (y/n)?')
         elif game.status == GAME_WON:
-            draw_text(display, 'You won!')
+            draw_text(display, 'You won! Try again (y/n)?')
 
         pygame.display.update()
 
