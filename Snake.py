@@ -1,6 +1,6 @@
 import pygame
 import time
-from SnakeGame import SnakeGame, UP, DOWN, LEFT, RIGHT, PLAYING, GAME_OVER
+from SnakeGame import SnakeGame, UP, DOWN, LEFT, RIGHT, PLAYING, GAME_OVER, GAME_WON
 
 WIDTH = 50
 HEIGHT = 40
@@ -45,7 +45,14 @@ def draw_arena(display, game):
     draw_walls(display)
     draw_food(display, game)
     draw_snake(display, game)
-    pygame.display.update()
+
+
+def draw_text(display, text):
+    font = pygame.font.Font(pygame.font.get_default_font(), 46)
+    text_surface = font.render(text, False, RED)
+    x = ((2 + WIDTH) * FIELD_SIZE - text_surface.get_width()) // 2
+    y = ((2 + HEIGHT) * FIELD_SIZE - text_surface.get_height()) // 2
+    display.blit(text_surface, (x, y))
 
 
 def main():
@@ -55,6 +62,7 @@ def main():
         ((2 + WIDTH) * FIELD_SIZE, (2 + HEIGHT) * FIELD_SIZE))
     pygame.display.set_caption('PySnake')
     draw_arena(display, game)
+    pygame.display.update()
 
     last_time = 0
     while True:
@@ -72,11 +80,19 @@ def main():
                     game.change_direction(RIGHT)
 
         current_time = time.time() * 1000
-        if game.status == PLAYING and current_time - last_time > 100:
-            last_time = current_time
+        if current_time - last_time < 100:
+            continue
+
+        last_time = current_time
+        if game.status == PLAYING:
             game.tick()
             draw_arena(display, game)
-            pygame.display.update()
+        elif game.status == GAME_OVER:
+            draw_text(display, 'Game Over')
+        elif game.status == GAME_WON:
+            draw_text(display, 'You won!')
+
+        pygame.display.update()
 
 
 if __name__ == '__main__':

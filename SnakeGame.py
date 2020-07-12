@@ -28,7 +28,7 @@ class SnakeGame:
             self.direction = new_direction
 
     def move_snake(self):
-        (x, y) = self.snake[0]
+        x, y = self.snake[0]
         if self.direction == UP:
             y -= 1
         elif self.direction == RIGHT:
@@ -64,7 +64,7 @@ class SnakeGame:
                 return
 
     def is_snake_alive(self):
-        (head_x, head_y) = self.snake[0]
+        head_x, head_y = self.snake[0]
         if head_x < 0 or head_x == self.width or head_y < 0 or head_y == self.height:
             return False
 
