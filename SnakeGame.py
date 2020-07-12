@@ -10,7 +10,7 @@ GAME_OVER = 1
 GAME_WON = 2
 
 
-class SnakeEngine:
+class SnakeGame:
     def __init__(self, width, height, food=None, snake=None, direction=UP):
         # TODO: validate width, height
         self.width = width
@@ -23,6 +23,7 @@ class SnakeEngine:
         self.status = PLAYING
 
     def change_direction(self, new_direction):
+        # TODO: validate direction
         if self.direction != (new_direction + 2) % 4:
             self.direction = new_direction
 
