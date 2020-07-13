@@ -17,6 +17,45 @@ SNAKE_COLOR = BROWN
 FOOD_COLOR = GREEN
 
 
+class SnakeGameWrapper:
+    def __init__(self, width, height, **kwargs):
+        self.snakeGame = SnakeGame(width, height, kwargs)
+
+    def change_direction(self, new_direction):
+        try:
+            self.snakeGame.change_direction(new_direction)
+        except AttributeError:
+            pass
+
+    def tick(self):
+        try:
+            self.snakeGame.tick()
+        except AttributeError:
+            pass
+
+    def get_property_or_default(self, property_name, default_value):
+        try:
+            return getattr(self.snakeGame, property_name)
+        except AttributeError:
+            return default_value
+
+    @property
+    def snake(self):
+        return self.get_property_or_default('snake', [])
+
+    @property
+    def food(self):
+        return self.get_property_or_default('food', [])
+
+    @property
+    def score(self):
+        return self.get_property_or_default('score', 0)
+
+    @property
+    def status(self):
+        return self.get_property_or_default('status', 0)
+
+
 def draw_walls(display):
     pygame.draw.rect(
         display, WALL_COLOR, (0, 0, (2 + WIDTH) * FIELD_SIZE, FIELD_SIZE))
@@ -62,8 +101,13 @@ def draw_text(display, text):
     display.blit(text_surface, (x, y))
 
 
+def create_game():
+    # return SnakeGame(width=WIDTH, height=HEIGHT)
+    return SnakeGameWrapper(WIDTH, HEIGHT)
+
+
 def main():
-    game = SnakeGame(width=WIDTH, height=HEIGHT)
+    game = create_game()
     pygame.init()
     display = pygame.display.set_mode(
         ((2 + WIDTH) * FIELD_SIZE, (2 + HEIGHT) * FIELD_SIZE))
@@ -86,7 +130,7 @@ def main():
                 if event.key == pygame.K_RIGHT:
                     game.change_direction(RIGHT)
                 if event.key == pygame.K_y and game.status != PLAYING:
-                    game = SnakeGame(width=WIDTH, height=HEIGHT)
+                    game = create_game()
                 if event.key == pygame.K_n and game.status != PLAYING:
                     return
 
