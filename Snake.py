@@ -41,11 +41,11 @@ class SnakeGameWrapper:
 
     @property
     def snake(self):
-        return self.get_property_or_default('snake', [])
+        return self.get_property_or_default('snake', []) or []
 
     @property
     def food(self):
-        return self.get_property_or_default('food', [])
+        return self.get_property_or_default('food', []) or []
 
     @property
     def score(self):
