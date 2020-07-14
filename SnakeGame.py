@@ -31,3 +31,6 @@ class SnakeGame:
             x += 1
 
         self.snake = [(x, y)]
+
+    def tick(self):
+        self.move_snake()

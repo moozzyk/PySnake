@@ -41,6 +41,15 @@ class TestSnakeGame02(unittest.TestCase):
         game.move_snake()
         self.assertEqual([(6, 7)], game.snake)
 
+    def test_tick_added(self):
+        """
+        Add a new method called `tick` that only takes `self` as parameter. Invoke the `move_snake` method
+        from this method.
+        """
+        game = SnakeGame(10, 15, direction=UP, food=[(0, 0)])
+        game.tick()
+        self.assertEqual([(5, 6)], game.snake)
+
 
 if __name__ == '__main__':
     unittest.main()
