@@ -19,6 +19,10 @@ class SnakeGame:
         self.snake = snake or [(width // 2, height // 2)]
         self.direction = direction
 
+    def change_direction(self, new_direction):
+        if self.direction != (new_direction + 2) % 4:
+            self.direction = new_direction
+
     def move_snake(self):
         x, y = self.snake[0]
         if self.direction == UP:

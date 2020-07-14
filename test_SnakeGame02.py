@@ -50,6 +50,62 @@ class TestSnakeGame02(unittest.TestCase):
         game.tick()
         self.assertEqual([(5, 6)], game.snake)
 
+    def test_change_direction_added(self):
+        """
+        Add a new method called `change_direction` that takes `self` and `new_direction` as the parameters.
+        Think how the snake should change the direction. If it is going up it should only change the direction if
+        the new direction is left or right (changing from up to up is no change and if you change from up to down
+        it would immediately eat itself). Similarly, when the snake is going left (or right) the only effective
+        change should be up or down. Calculate the new direction and set it to the `direction` class variable.
+        Note that UP, RIGHT, DOWN, LEFT are actually integer variables (i.e. numbers). Can you exploit this fact
+        to create a concise implementation?
+        """
+        # Verify direction not changed when new direction is same or the opposite
+        game = SnakeGame(10, 15, direction=UP)
+        game.change_direction(UP)
+        self.assertEqual(UP, game.direction)
+        game.change_direction(DOWN)
+        self.assertEqual(UP, game.direction)
+
+        game = SnakeGame(10, 15, direction=DOWN)
+        game.change_direction(UP)
+        self.assertEqual(DOWN, game.direction)
+        game.change_direction(DOWN)
+        self.assertEqual(DOWN, game.direction)
+
+        game = SnakeGame(10, 15, direction=LEFT)
+        game.change_direction(LEFT)
+        self.assertEqual(LEFT, game.direction)
+        game.change_direction(RIGHT)
+        self.assertEqual(LEFT, game.direction)
+
+        game = SnakeGame(10, 15, direction=RIGHT)
+        game.change_direction(LEFT)
+        self.assertEqual(RIGHT, game.direction)
+        game.change_direction(RIGHT)
+        self.assertEqual(RIGHT, game.direction)
+
+        # Verify turns - counterclockwise
+        game = SnakeGame(10, 15, direction=UP)
+        game.change_direction(LEFT)
+        self.assertEquals(LEFT, game.direction)
+        game.change_direction(DOWN)
+        self.assertEquals(DOWN, game.direction)
+        game.change_direction(RIGHT)
+        self.assertEqual(RIGHT, game.direction)
+        game.change_direction(UP)
+        self.assertEqual(UP, game.direction)
+
+        # Verify turns clockwise
+        game.change_direction(RIGHT)
+        self.assertEquals(RIGHT, game.direction)
+        game.change_direction(DOWN)
+        self.assertEquals(DOWN, game.direction)
+        game.change_direction(LEFT)
+        self.assertEquals(LEFT, game.direction)
+        game.change_direction(UP)
+        self.assertEquals(UP, game.direction)
+
 
 if __name__ == '__main__':
     unittest.main()
