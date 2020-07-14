@@ -18,3 +18,16 @@ class SnakeGame:
         self.food = food
         self.snake = snake or [(width // 2, height // 2)]
         self.direction = direction
+
+    def move_snake(self):
+        x, y = self.snake[0]
+        if self.direction == UP:
+            y -= 1
+        if self.direction == DOWN:
+            y += 1
+        if self.direction == LEFT:
+            x -= 1
+        if self.direction == RIGHT:
+            x += 1
+
+        self.snake = [(x, y)]
