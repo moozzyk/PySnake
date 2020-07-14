@@ -16,5 +16,5 @@ class SnakeGame:
         self.width = width
         self.height = height
         self.food = food
-        self.snake = snake
+        self.snake = snake or [(width // 2, height // 2)]
         self.direction = direction
