@@ -52,10 +52,10 @@ class SnakeGame:
         return False
 
     def add_food_if_needed(self):
-        if len(self.snake) == self.width * self.height:
+        if self.food:
             return
 
-        if len(self.food) > 0:
+        if len(self.snake) == self.width * self.height:
             return
 
         while True:

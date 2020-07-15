@@ -18,6 +18,18 @@ class SnakeGame:
         self.food = food
         self.snake = snake or [(width // 2, height // 2)]
         self.direction = direction
+        self.add_food_if_needed()
+
+    def add_food_if_needed(self):
+        if self.food or len(self.snake) == self.width * self.height:
+            return
+
+        while True:
+            food_position = (randint(0, self.width - 1),
+                             randint(0, self.height - 1))
+            if not food_position in self.snake:
+                self.food = [food_position]
+                return
 
     def change_direction(self, new_direction):
         if self.direction != (new_direction + 2) % 4:

@@ -88,9 +88,9 @@ class TestSnakeGame02(unittest.TestCase):
         # Verify turns - counterclockwise
         game = SnakeGame(10, 15, direction=UP)
         game.change_direction(LEFT)
-        self.assertEquals(LEFT, game.direction)
+        self.assertEqual(LEFT, game.direction)
         game.change_direction(DOWN)
-        self.assertEquals(DOWN, game.direction)
+        self.assertEqual(DOWN, game.direction)
         game.change_direction(RIGHT)
         self.assertEqual(RIGHT, game.direction)
         game.change_direction(UP)
@@ -98,13 +98,13 @@ class TestSnakeGame02(unittest.TestCase):
 
         # Verify turns clockwise
         game.change_direction(RIGHT)
-        self.assertEquals(RIGHT, game.direction)
+        self.assertEqual(RIGHT, game.direction)
         game.change_direction(DOWN)
-        self.assertEquals(DOWN, game.direction)
+        self.assertEqual(DOWN, game.direction)
         game.change_direction(LEFT)
-        self.assertEquals(LEFT, game.direction)
+        self.assertEqual(LEFT, game.direction)
         game.change_direction(UP)
-        self.assertEquals(UP, game.direction)
+        self.assertEqual(UP, game.direction)
 
 
 if __name__ == '__main__':
