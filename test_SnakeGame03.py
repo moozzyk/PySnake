@@ -1,6 +1,10 @@
 import unittest
 from SnakeGame import SnakeGame
 
+"""
+After you make these tests pass and run the game you will see a food item show up in the arena.
+"""
+
 
 class TestSnakeGame03(unittest.TestCase):
     def test_add_food_if_needed_added(self):

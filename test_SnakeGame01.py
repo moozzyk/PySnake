@@ -1,6 +1,11 @@
 import unittest
 from SnakeGame import SnakeGame, DOWN
 
+"""
+After you make these tests pass and run the game you will see the minimal snake in the
+middle of the arena.
+"""
+
 
 class TestSnakeGame01(unittest.TestCase):
     def test_init_mandatory_paramaters(self):

@@ -1,6 +1,11 @@
 import unittest
 from SnakeGame import SnakeGame, UP, DOWN, RIGHT, LEFT
 
+"""
+After you make these tests pass and run the game you will see the minimal snake moving
+and you will be able to control the snake with arrow keys.
+"""
+
 
 class TestSnakeGame02(unittest.TestCase):
     def test_move_snake_added(self):
