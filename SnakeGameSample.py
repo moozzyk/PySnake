@@ -24,7 +24,6 @@ class SnakeGame:
         self.score = 0
 
     def change_direction(self, new_direction):
-        # TODO: validate direction
         if self.direction != (new_direction + 2) % 4:
             self.direction = new_direction
 

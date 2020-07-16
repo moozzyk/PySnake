@@ -54,7 +54,8 @@ class TestSnakeGame03(unittest.TestCase):
         will take all the available space. When this happens it will be impossible to add more food.
         If the `add_food_if_needed` method is trying to add food in a loop this loop will never end and
         the game will hang. You need to make sure that no attempt to add food is made if there is no
-        space for the food.
+        space for the food. Even if you can't add any food, make sure that the food list is empty and
+        not `None`.
         NOTE: If running tests hangs it is likely that the functionality is not implemented correctly
         and your code entered an inifinite loop (i.e. your loop inside `add_food_if_needed` never finishes).
         If this happens press CRTL+C to break the tests then fix the code and retry.

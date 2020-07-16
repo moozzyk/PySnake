@@ -15,7 +15,7 @@ class SnakeGame:
         """Object initialization logic"""
         self.width = width
         self.height = height
-        self.food = food
+        self.food = food or []
         self.snake = snake or [(width // 2, height // 2)]
         self.direction = direction
         self.add_food_if_needed()
@@ -46,7 +46,11 @@ class SnakeGame:
         if self.direction == RIGHT:
             x += 1
 
-        self.snake = [(x, y)]
+        if self.food[0] == (x, y):
+            self.snake = [(x, y)] + self.snake
+        else:
+            self.snake = [(x, y)] + self.snake[0: -1]
+        self.food = []
 
     def tick(self):
         self.move_snake()
