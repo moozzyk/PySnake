@@ -36,8 +36,8 @@ class TestSnakeGame01(unittest.TestCase):
     def test_initial_snake_position(self):
         """
         The snake will be defined as a list of coordindates. Each coordinate will describe
-        a position of a snake segment with the first item being the position of he head.
-        The coordinate are in the form of (x, y) where (0, 0) is the top, left corner of the
+        the position of a snake segment with the first item being the position of the head.
+        The coordinates are in the form of (x, y) where (0, 0) is the top, left corner of the
         screen. For instance [(4, 6)] tells that the snake has only one segment (the head)
         which is located in the 4th column on the 6th row. When starting the game the snake
         should only have one segment (the head) positioned in the middle of the screen unless
