@@ -49,6 +49,7 @@ class SnakeGame:
         if self.food[0] == (x, y):
             self.snake = [(x, y)] + self.snake
             self.food = []
+            self.add_food_if_needed()
         else:
             self.snake = [(x, y)] + self.snake[0: -1]
 
