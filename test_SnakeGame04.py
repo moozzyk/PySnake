@@ -3,7 +3,7 @@ from SnakeGame import SnakeGame, LEFT
 
 """
 After you make these tests pass and run the game you will be able to eat
-the food and grow the snake.
+the food and the snake will grow.
 """
 
 
