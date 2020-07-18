@@ -48,9 +48,9 @@ class SnakeGame:
 
         if self.food[0] == (x, y):
             self.snake = [(x, y)] + self.snake
+            self.food = []
         else:
             self.snake = [(x, y)] + self.snake[0: -1]
-        self.food = []
 
     def tick(self):
         self.move_snake()

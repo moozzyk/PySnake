@@ -22,6 +22,7 @@ class TestSnakeGame04(unittest.TestCase):
                          (0, 0)], direction=LEFT)
         game.move_snake()
         self.assertEqual([(3, 3), (4, 3), (4, 4)], game.snake)
+        self.assertEqual([(0, 0)], game.food)
 
     def test_snake_eating_food(self):
         """
@@ -35,7 +36,7 @@ class TestSnakeGame04(unittest.TestCase):
                          (3, 3)], direction=LEFT)
         game.move_snake()
         self.assertEqual([(3, 3), (4, 3), (4, 4), (5, 4)], game.snake)
-        self.assertEqual([], game.food)
+        self.assertNotEqual([3, 3], game.food)
 
 
 if __name__ == '__main__':
