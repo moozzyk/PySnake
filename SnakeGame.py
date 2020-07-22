@@ -19,6 +19,7 @@ class SnakeGame:
         self.snake = snake or [(width // 2, height // 2)]
         self.direction = direction
         self.add_food_if_needed()
+        self.status = PLAYING
 
     def add_food_if_needed(self):
         if self.food or len(self.snake) == self.width * self.height:
@@ -53,5 +54,15 @@ class SnakeGame:
         else:
             self.snake = [(x, y)] + self.snake[0: -1]
 
+    def snake_is_alive(self):
+        head_x, head_y = self.snake[0]
+        return head_x >= 0 and head_x < self.width and head_y >= 0 and head_y < self.height
+
     def tick(self):
+        if self.status == GAME_OVER:
+            return
+
         self.move_snake()
+
+        if not self.snake_is_alive():
+            self.status = GAME_OVER

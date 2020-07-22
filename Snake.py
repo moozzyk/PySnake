@@ -102,7 +102,6 @@ def draw_text(display, text):
 
 
 def create_game():
-    # return SnakeGame(width=WIDTH, height=HEIGHT)
     return SnakeGameWrapper(WIDTH, HEIGHT)
 
 
