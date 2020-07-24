@@ -20,6 +20,7 @@ class SnakeGame:
         self.direction = direction
         self.add_food_if_needed()
         self.status = PLAYING
+        self.score = 0
 
     def add_food_if_needed(self):
         if self.food or len(self.snake) == self.width * self.height:
@@ -51,6 +52,7 @@ class SnakeGame:
             self.snake = [(x, y)] + self.snake
             self.food = []
             self.add_food_if_needed()
+            self.score += 5
         else:
             self.snake = [(x, y)] + self.snake[0: -1]
 
