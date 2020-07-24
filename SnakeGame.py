@@ -56,13 +56,15 @@ class SnakeGame:
 
     def snake_is_alive(self):
         head_x, head_y = self.snake[0]
-        return head_x >= 0 and head_x < self.width and head_y >= 0 and head_y < self.height
+        return head_x >= 0 and head_x < self.width and head_y >= 0 and head_y < self.height and self.snake[0] not in self.snake[1:]
 
     def tick(self):
-        if self.status == GAME_OVER:
+        if self.status != PLAYING:
             return
 
         self.move_snake()
 
         if not self.snake_is_alive():
             self.status = GAME_OVER
+        elif len(self.snake) == self.width * self.height:
+            self.status = GAME_WON
