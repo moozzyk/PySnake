@@ -19,4 +19,13 @@ class SnakeGame:
         self.direction = direction
 
     def move_snake(self):
-        pass
+        x, y = self.snake[0]
+        if self.direction == UP:
+            y -= 1
+        elif self.direction == DOWN:
+            y += 1
+        elif self.direction == LEFT:
+            x -= 1
+        elif self.direction == RIGHT:
+            x += 1
+        self.snake = [(x, y)]
