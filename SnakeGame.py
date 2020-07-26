@@ -29,3 +29,6 @@ class SnakeGame:
         elif self.direction == RIGHT:
             x += 1
         self.snake = [(x, y)]
+
+    def tick(self):
+        self.move_snake()
