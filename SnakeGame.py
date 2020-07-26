@@ -12,4 +12,5 @@ GAME_WON = 2
 
 class SnakeGame:
     def __init__(self, width, height, food=None, snake=None, direction=UP):
-        """Object initialization logic"""
+        self.width = width
+        self.height = height
