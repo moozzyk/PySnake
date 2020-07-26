@@ -30,5 +30,9 @@ class SnakeGame:
             x += 1
         self.snake = [(x, y)]
 
+    def change_direction(self, new_direction):
+        if new_direction % 2 != self.direction % 2:
+            self.direction = new_direction
+
     def tick(self):
         self.move_snake()
