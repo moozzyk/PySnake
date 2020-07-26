@@ -17,3 +17,6 @@ class SnakeGame:
         self.food = food
         self.snake = snake or [(width // 2, height // 2)]
         self.direction = direction
+
+    def move_snake(self):
+        pass
